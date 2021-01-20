@@ -34,7 +34,7 @@ def additem(request, Order_Id):
     return render(request, 'zamowienia/additem.html', {'form': form})
 
 def Clients(request):
-    List_of_CLients = Order.objects.values('Client_Name').annotate(Sum('Client_Name'))
+    List_of_CLients = Order.objects.values('Client_Name__Name').annotate(Sum('Client_Name'))
     Lista = {'List_of_CLients': List_of_CLients}
     return render(request, 'zamowienia/clients.html', Lista)
 
