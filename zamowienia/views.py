@@ -39,12 +39,12 @@ def Clients(request):
     return render(request, 'zamowienia/clients.html', Lista)
 
 def Client_detail(request, Client_Name):
-    ords = Order.objects.values('Order_Id').annotate(Sum('Client_Name')).filter(Client_Name = Client_Name)
+    ords = Order.objects.values('Order_Id').annotate(Sum('Client_Name')).filter(Client_Name__Name = Client_Name)
     return render(request, 'zamowienia/client_detail.html', {'ords': ords})
 
 def Client_order_detail(request, Order_Id, Client_Name):
-    items = Order.objects.annotate(Sum('Client_Name')).filter(Order_Id__OrderId=Order_Id, Client_Name = Client_Name)
-    suma = Order.objects.values('Order_Id').filter(Client_Name = Client_Name, Order_Id__OrderId=Order_Id).annotate(Sum('Item_Cost'))
+    items = Order.objects.annotate(Sum('Client_Name')).filter(Order_Id__OrderId=Order_Id, Client_Name__Name = Client_Name)
+    suma = Order.objects.values('Order_Id').filter(Client_Name__Name = Client_Name, Order_Id__OrderId=Order_Id).annotate(Sum('Item_Cost'))
     return render(request, 'zamowienia/client_order_detail.html', {'items': items, 'suma': suma[0]})
 
 def orders(request):
