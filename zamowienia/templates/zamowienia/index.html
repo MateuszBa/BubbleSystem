@@ -1,0 +1,25 @@
+{% extends 'zamowienia/base.html' %}
+
+{% block content %}
+<h1>Lista zamówień</h1>
+{% if orders %}
+<table>
+    <thead>
+    <th>Numer</th>
+    <th>Akcje</th>
+    </thead>
+    <tbody>
+
+{% for OrderId in orders %}
+    <tr>
+    <td>{{ OrderId.OrderId}}</td>
+    <td><a href="{% url 'detail' OrderId.OrderId %}">View Order</a> <a href="{% url 'additem' OrderId.OrderId %}">Add Item</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>Brak zamówień</p>
+{% endif %}
+<a href="addorder/">Add Order</a>
+{% endblock %}

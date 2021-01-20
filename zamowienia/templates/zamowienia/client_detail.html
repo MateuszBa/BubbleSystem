@@ -1,0 +1,23 @@
+{% extends 'zamowienia/base.html' %}
+
+{% block content %}
+<h1>List zamówień klienta</h1>
+{% if ords %}
+<table>
+    <thead>
+    <th>Id zamówienia</th>
+    </thead>
+    <tbody>
+
+{% for Order_Id in ords %}
+    <tr>
+    <td><a href="{{ Order_Id.Order_Id }}">{{ Order_Id.Order_Id}}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>Brak zamówień</p>
+{% endif %}
+<a href="{% url 'clients' %}">Powrót</a>
+{% endblock %}

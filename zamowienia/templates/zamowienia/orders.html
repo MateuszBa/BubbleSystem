@@ -1,0 +1,24 @@
+{% extends 'zamowienia/base.html' %}
+
+{% block content %}
+<h1>Lista zamówień</h1>
+{% if orders %}
+<table>
+    <thead>
+    <th>Numer</th>
+    <th>Data dodania</th>
+    </thead>
+    <tbody>
+
+{% for OrderId in orders %}
+    <tr>
+    <td><a href="{% url 'detail' OrderId.OrderId %}"> {{ OrderId.OrderId}} </a></td>
+    <td><a>{{ OrderId.Order_Data }}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>Brak zamówień</p>
+{% endif %}
+{% endblock %}

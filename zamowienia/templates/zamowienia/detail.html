@@ -1,0 +1,28 @@
+{% extends 'zamowienia/base.html' %}
+
+{% block content %}
+<h1>View Order</h1>
+<table>
+    <thead>
+    <th>ID</th>
+    <th>Nazwa</th>
+    <th>Pozycja</th>
+    <th>Klient</th>
+    <th>Cena</th>
+    </thead>
+    <tbody>
+
+{% for item in items %}
+    <tr>
+    <td>{{ item.id }}</td>
+    <td>{{ item.Item_Name }}</td>
+    <td>{{ item.Catalog_Id }}</td>
+    <td>{{ item.Client_Name }}</td>
+    <td>{{ item.Item_Cost }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<p><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
+<a href="#" onclick="history.go(-1)">Powrót</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista zamówień</title>
+    {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'zamowienia/style.css' %}">
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="{% url 'index' %}">Strona Główna</a>
+  <a href="{% url 'clients' %}">Lista Klientów</a>
+  <a href="{% url 'orders' %}">Zamowienia</a>
+  <a href="#about">About</a>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'zamowienia/base.html' %}
+
+{% block content %}
+<h1>Lista klientów</h1>
+{% if List_of_CLients %}
+<table>
+    <thead>
+    <th>Imie i Nazwisko</th>
+    </thead>
+    <tbody>
+
+{% for Client_Name in List_of_CLients %}
+    <tr>
+    <td><a href="{{ Client_Name.Client_Name }}/">{{ Client_Name.Client_Name}}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>Brak klientów</p>
+{% endif %}
+{% endblock %}
