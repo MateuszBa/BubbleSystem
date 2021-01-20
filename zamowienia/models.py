@@ -17,7 +17,7 @@ class Order(models.Model):
     Order_Id = models.ForeignKey(OrderId, on_delete=models.CASCADE)
     Item_Name = models.CharField(max_length=200)
     Catalog_Id = models.IntegerField(default=0)
-    Client_Name = models.ForeignKey(Client, on_delete=models.CASCADE())
+    Client_Name = models.ForeignKey(Client, on_delete=models.CASCADE)
     Item_Cost = models.IntegerField(default=0)
 
     def __str__(self):
