@@ -17,6 +17,8 @@ class Order(models.Model):
     def __str__(self):
         return self.Item_Name
 
-
+class Client(models.Model):
+    Name = models.CharField(max_length=200)
+    Surname = models.CharField(max_length=200)
 
 
