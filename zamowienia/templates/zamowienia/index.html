@@ -1,25 +1,23 @@
-{% extends 'zamowienia/base.html' %}
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista zamówień</title>
+    {% load static %}
 
-{% block content %}
-<h1>Lista zamówień</h1>
-{% if orders %}
-<table>
-    <thead>
-    <th>Numer</th>
-    <th>Akcje</th>
-    </thead>
-    <tbody>
-
-{% for OrderId in orders %}
-    <tr>
-    <td>{{ OrderId.OrderId}}</td>
-    <td><a href="{% url 'detail' OrderId.OrderId %}">View Order</a> <a href="{% url 'additem' OrderId.OrderId %}">Add Item</a></td>
-    </tr>
-{% endfor %}
-    </tbody>
-</table>
-{% else %}
-    <p>Brak zamówień</p>
-{% endif %}
-<a href="addorder/">Add Order</a>
-{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'zamowienia/style.css' %}">
+</head>
+<body>
+<div class="topnav">
+  <a class="active" href="{% url 'index' %}">Strona Główna</a>
+  <a href="{% url 'clients' %}">Lista Klientów</a>
+  <a href="{% url 'orders' %}">Zamowienia</a>
+  <a class="about" href="#about">About</a>
+</div>
+<h1>Witaj w systemie zarządzania zamówieniami</h1>
+<h2>Co chcesz zrobić?</h2>
+<div class="nav">
+    <button class="button" onclick="location.href='clients'" type="button">Przeglądać klientów</button><br>
+    <button class="button" onclick="location.href='orders'" type="button">Przegladać zamówienia</button>
+</div>
+</body>
+</html>

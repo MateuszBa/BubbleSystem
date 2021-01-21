@@ -25,4 +25,5 @@
 </table>
 <p><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
 <a href="#" onclick="history.go(-1)">Powrót</a>
+<a href="{% url 'usun' suma.Order_Id %}">Usun</a>
 {% endblock %}

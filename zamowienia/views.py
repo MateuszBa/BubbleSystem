@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import NameForm
+from .forms import NameForm, delete
 from django.db.models import Sum
 from django.urls import reverse
 
@@ -36,9 +36,10 @@ def additem(request, Order_Id):
 
     return render(request, 'zamowienia/additem.html', {'form': form})
 
-def usun(request):
-    #item = Order.objects.filter(Order_Id__OrderId=Order_Id)
-    return render(request, 'zamowienia/delete.html')
+def usun(request, Order_Id):
+    item = Order.objects.filter(Order_Id__OrderId=Order_Id)
+    deletes = delete(request.POST)
+    return render(request, 'zamowienia/delete.html', {'deletes': deletes})
 
 def Clients(request):
     List_of_CLients = Order.objects.values('Client_Name__Name').annotate(Sum('Client_Name'))
