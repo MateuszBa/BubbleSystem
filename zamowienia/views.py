@@ -68,7 +68,25 @@ def Client_detail(request, Client_Name):
 def Client_order_detail(request, Order_Id, Client_Name):
     items = Order.objects.annotate(Sum('Client_Name')).filter(Order_Id__OrderId=Order_Id, Client_Name__Name = Client_Name)
     suma = Order.objects.values('Order_Id').filter(Client_Name__Name = Client_Name, Order_Id__OrderId=Order_Id).annotate(Sum('Item_Cost'))
-    return render(request, 'zamowienia/client_order_detail.html', {'items': items, 'suma': suma[0]})
+    var = Order_Id
+    return render(request, 'zamowienia/client_order_detail.html', {'items': items, 'suma': suma[0], 'var': var})
+
+def Client_new(request, var, Client_Name):
+    items = Order.objects.filter(Order_Id__OrderId=var)
+    suma = Order.objects.values('Order_Id').filter(Order_Id__OrderId=var).annotate(Sum('Item_Cost'))
+    var1 = OrderId.objects.filter(OrderId = var)
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.Order_Id = var1[0]
+            form.save()
+            return render(request, 'zamowienia/detail.html', {'items': items, 'suma': suma[0]})
+    else:
+        form = NameForm()
+
+    return render(request, 'zamowienia/additem.html', {'form': form})
+
 
 def orders(request):
     ordernumbers = OrderId.objects.order_by('OrderId')[:5]
