@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+app_name = 'zamowienia'
 urlpatterns = [
     path('indeks', views.index, name='index'),
     path('<int:OrderId>/', views.detail, name='detail'),
@@ -12,4 +13,6 @@ urlpatterns = [
     path('clients/<str:Client_Name>/<int:Order_Id>', views.Client_order_detail, name='client_order_detail'),
     path('orders', views.orders, name='orders'),
     path('<int:Order_Id>/usun', views.usun, name='usun'),
+    path('clients/<str:Client_Name>/additem/', views.additem, name='additems'),
+    path('about', views.about, name='about'),
 ]

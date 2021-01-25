@@ -1,8 +1,9 @@
 from django.db import models
+from django.utils import timezone
 
 class OrderId(models.Model):
-    OrderId = models.IntegerField(default=0)
-    Order_Data = models.DateTimeField('Create Date')
+    OrderId = models.IntegerField(default=0, primary_key=True)
+    Order_Data = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(self.OrderId)

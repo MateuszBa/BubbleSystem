@@ -11,7 +11,7 @@
   <a class="active" href="{% url 'index' %}">Strona Główna</a>
   <a href="{% url 'clients' %}">Lista Klientów</a>
   <a href="{% url 'orders' %}">Zamowienia</a>
-  <a class="about" href="#about">About</a>
+  <a class="about" href="{% url 'about' %}">About</a>
 </div>
 {% block content %}
 {% endblock %}

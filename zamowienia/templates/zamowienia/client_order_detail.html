@@ -7,7 +7,6 @@
     <th>ID</th>
     <th>Nazwa</th>
     <th>Pozycja</th>
-    <th>Klient</th>
     <th>Cena</th>
     </thead>
     <tbody>
@@ -17,12 +16,15 @@
     <td>{{ item.id }}</td>
     <td>{{ item.Item_Name }}</td>
     <td>{{ item.Catalog_Id }}</td>
-    <td>{{ item.Client_Name__Name }}</td>
     <td>{{ item.Item_Cost }}</td>
     </tr>
 {% endfor %}
     </tbody>
 </table>
-<p><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
-<a href="#" onclick="history.go(-1)">Go Back</a>
+<p style="text-align: center"><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
+    <div class="nav">
+        <button class="button" onclick="history.go(-1)" type="button">Powrót</button>
+        <button class="button" onclick="location.href='detail'" type="button">Dodaj</button>
+        <button class="button" onclick="location.href='usun'" type="button">Usun</button>
+    </div>
 {% endblock %}

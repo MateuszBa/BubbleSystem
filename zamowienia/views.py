@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import NameForm, delete
+from .forms import NameForm, removes, neworder, neworderitem
 from django.db.models import Sum
 from django.urls import reverse
+from django.utils.timezone import now
 
 from .models import Order, OrderId
 
@@ -18,7 +19,16 @@ def index(request):
 
 
 def addorder(request):
-    return render(request, 'zamowienia/addorder.html')
+    if request.method == 'POST':
+        form = neworder(request.POST)
+        if form.is_valid():
+            form.save()
+            news = NameForm(request.POST)
+            return redirect('additems')
+    else:
+        form = neworder()
+
+    return render(request, 'zamowienia/addorder.html', {'form': form})
 
 def additem(request, Order_Id):
     items = Order.objects.filter(Order_Id__OrderId=Order_Id)
@@ -38,7 +48,12 @@ def additem(request, Order_Id):
 
 def usun(request, Order_Id):
     item = Order.objects.filter(Order_Id__OrderId=Order_Id)
-    deletes = delete(request.POST)
+    if request.method == 'POST':
+        deletes = removes(request.POST)
+        if deletes.is_valid():
+            deletes.delete()
+    else:
+        deletes = removes()
     return render(request, 'zamowienia/delete.html', {'deletes': deletes})
 
 def Clients(request):
@@ -59,3 +74,6 @@ def orders(request):
     ordernumbers = OrderId.objects.order_by('OrderId')[:5]
     context = {'orders': ordernumbers}
     return render(request, 'zamowienia/orders.html', context)
+
+def about(request):
+    return render(request, 'zamowienia/about.html')

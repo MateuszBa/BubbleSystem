@@ -23,7 +23,10 @@
 {% endfor %}
     </tbody>
 </table>
-<p><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
-<a href="#" onclick="history.go(-1)">Powrót</a>
-<a href="{% url 'usun' suma.Order_Id %}">Usun</a>
+<p style="text-align: center"><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
+    <div class="nav">
+        <button class="button" onclick="history.go(-1)" type="button">Powrót</button>
+        <button class="button" onclick="location.href='additem'" type="button">Dodaj</button>
+        <button class="button" onclick="location.href='usun'" type="button">Usuń</button>
+    </div>
 {% endblock %}

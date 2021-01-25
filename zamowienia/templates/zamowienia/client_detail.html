@@ -19,5 +19,7 @@
 {% else %}
     <p>Brak zamówień</p>
 {% endif %}
-<a href="{% url 'clients' %}">Powrót</a>
+    <div class="nav">
+        <button class="button" onclick="history.go(-1)" type="button">Powrót</button>
+    </div>
 {% endblock %}
