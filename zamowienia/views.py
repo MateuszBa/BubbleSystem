@@ -10,7 +10,13 @@ from .models import Order, OrderId
 def detail(request, Order_Id):
     items = Order.objects.filter(Order_Id__OrderId=Order_Id)
     suma = Order.objects.values('Order_Id').filter(Order_Id__OrderId=Order_Id).annotate(Sum('Item_Cost'))
-    return render(request, 'zamowienia/detail.html', {'items': items, 'suma': suma[0]})
+    if len(items) > 0 and len(suma) > 0:
+        context = {
+            {'items': items, 'suma': suma[0]}
+        }
+    else:
+        context = {}
+    return render(request, 'zamowienia/detail.html', context)
 
 def index(request):
     ordernumbers = OrderId.objects.order_by('OrderId')[:5]
@@ -23,8 +29,8 @@ def addorder(request):
         form = neworder(request.POST)
         if form.is_valid():
             form.save()
-            news = NameForm(request.POST)
-            return redirect('additems')
+            Order_Id = form.cleaned_data['OrderId']
+            return redirect('detail', Order_Id)
     else:
         form = neworder()
 

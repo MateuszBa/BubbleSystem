@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class OrderId(models.Model):
-    OrderId = models.IntegerField(default=0, primary_key=True)
+    OrderId = models.IntegerField(default=0)
     Order_Data = models.DateTimeField(default=timezone.now)
 
     def __str__(self):

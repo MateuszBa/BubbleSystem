@@ -19,7 +19,7 @@ body {
 }
 
 .topnav a.about{
-  border-style: solid;
+  overflow: hidden;
   float: right;
 }
 

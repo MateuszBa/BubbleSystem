@@ -2,6 +2,7 @@
 
 {% block content %}
 <h1>View Order</h1>
+{%  if items %}
 <table>
     <thead>
     <th>ID</th>
@@ -24,6 +25,9 @@
     </tbody>
 </table>
 <p style="text-align: center"><strong>Lączna wartosc zamowienia to: </strong>{{ suma.Item_Cost__sum }}</p>
+{% else %}
+    <p style="text-align: center"><strong>Zamówienie jest puste</strong></p>
+{% endif %}
     <div class="nav">
         <button class="button" onclick="history.go(-1)" type="button">Powrót</button>
         <button class="button" onclick="location.href='additem'" type="button">Dodaj</button>
