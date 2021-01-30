@@ -12,7 +12,6 @@ urlpatterns = [
     path('clients/<str:Client_Name>/', views.Client_detail, name='Client_detail'),
     path('clients/<str:Client_Name>/<int:Order_Id>', views.Client_order_detail, name='client_order_detail'),
     path('orders', views.orders, name='orders'),
-    path('<int:Order_Id>/usun', views.usun, name='usun'),
     path('clients/<str:Client_Name>/<int:var>/Client_new/', views.Client_new, name='Client_new'),
     path('about', views.about, name='about'),
 ]
