@@ -14,4 +14,5 @@ urlpatterns = [
     path('orders', views.orders, name='orders'),
     path('clients/<str:Client_Name>/<int:var>/Client_new/', views.Client_new, name='Client_new'),
     path('about', views.about, name='about'),
+    path('clients/newclient', views.newclients, name='newclient'),
 ]

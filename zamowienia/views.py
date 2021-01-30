@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import NameForm, neworder, neworderitem
+from .forms import NameForm, neworder, neworderitem, newclient
 from django.db.models import Sum
 from django.urls import reverse
 from django.utils.timezone import now
 
-from .models import Order, OrderId
+from .models import Order, OrderId, Client
 
 def detail(request, Order_Id):
     items = Order.objects.filter(Order_Id__OrderId=Order_Id)
@@ -51,7 +51,7 @@ def additem(request, Order_Id):
     return render(request, 'zamowienia/additem.html', {'form': form})
 
 def Clients(request):
-    List_of_CLients = Order.objects.values('Client_Name__Name').annotate(Sum('Client_Name'))
+    List_of_CLients = Client.objects.order_by('Name')
     Lista = {'List_of_CLients': List_of_CLients}
     return render(request, 'zamowienia/clients.html', Lista)
 
@@ -93,3 +93,13 @@ def orders(request):
 
 def about(request):
     return render(request, 'zamowienia/about.html')
+
+def newclients(request):
+    if request.method == 'POST':
+        form = newclient(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = newclient()
+
+    return render(request, 'zamowienia/newclient.html', {'form': form})

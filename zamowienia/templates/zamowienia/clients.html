@@ -9,14 +9,17 @@
     </thead>
     <tbody>
 
-{% for Client_Name in List_of_CLients %}
+{% for Client in List_of_CLients %}
     <tr>
-    <td><a href="{{ Client_Name.Client_Name__Name }}/">{{ Client_Name.Client_Name__Name}}</a></td>
+    <td><a href="{{ Client.Name }}/">{{ Client.Name}}</a></td>
     </tr>
 {% endfor %}
     </tbody>
 </table>
 {% else %}
-    <p>Brak klientów</p>
+    <p style="text-align: center">Brak klientów</p>
 {% endif %}
+    <div class="nav">
+    <button class="button" onclick="location.href='newclient'" type="button">Nowy klient</button>
+    </div>
 {% endblock %}
